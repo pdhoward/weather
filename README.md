@@ -1,5 +1,8 @@
 # weather
 
+Sign up for an api to use fusion charts
+https://developers.google.com/maps/documentation/javascript/get-api-key
+
 ## Project setup
 ```
 npm install

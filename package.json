@@ -9,9 +9,14 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "core-js": "^2.6.5",
+    "fusioncharts": "^3.13.4",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
+    "vue-fusioncharts": "^3.0.2",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
@@ -28,5 +33,10 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
