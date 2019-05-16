@@ -10,7 +10,7 @@ export default {
   props: ["highlights"],
   data () {
     return {
-      uvindex: this.highlights.uvindex
+      uvindex: this.highlights.uvIndex
     }
   },
   methods: {
