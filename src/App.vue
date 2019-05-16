@@ -86,6 +86,7 @@ import { convertToTitleCase,
          fahToCel,
          formatPossibility,
          milibarToKiloPascal,
+         mileToKilometer,
          unixToHuman } from '@/utils'
          
 //import utilityObj from '@/utils'
@@ -265,10 +266,7 @@ export default {
      },
     getSetCurrentTime: function() {
      var currentTime = this.rawWeatherData.currently.time;
-     var timezone = this.getTimezone();
-     console.log(`>>>>>>>>>>>>>>>>.   DEBUG MODE  line 266<<<<<<<<<<<<<`)
-     console.log(typeof convertToTitleCase)
-     //console.log(utilityObj)
+     var timezone = this.getTimezone(); 
      
      this.currentWeather.time = unixToHuman(
        timezone,
@@ -276,7 +274,7 @@ export default {
      ).fullTime;
    },
     getSetSummary: function() {
-     var currentSummary = this.convertToTitleCase(
+     var currentSummary = convertToTitleCase(
        this.rawWeatherData.currently.summary
      );
      if (currentSummary.includes(' And')) {
@@ -285,7 +283,7 @@ export default {
      this.currentWeather.summary = currentSummary;
    },
    getSetPossibility: function() {
-     var possible = this.formatPossibility(this.rawWeatherData.daily.icon);
+     var possible = formatPossibility(this.rawWeatherData.daily.icon);
      if (possible.includes(' And')) {
        possible = possible.replace(' And', ',');
      }
@@ -293,7 +291,7 @@ export default {
    },
     getSetCurrentTemp: function() {
      var currentTemp = this.rawWeatherData.currently.temperature;
-     this.currentWeather.temp = this.fahToCel(currentTemp);
+     this.currentWeather.temp = fahToCel(currentTemp);
    },
     getTodayDetails: function() {
      return this.rawWeatherData.daily.data[0];
@@ -301,17 +299,17 @@ export default {
     getSetTodayTempHighLowWithTime: function() {
      var timezone = this.getTimezone();
      var todayDetails = this.getTodayDetails();
-     this.currentWeather.todayHighLow.todayTempHigh = this.fahToCel(
+     this.currentWeather.todayHighLow.todayTempHigh = fahToCel(
        todayDetails.temperatureMax
      );
-     this.currentWeather.todayHighLow.todayTempHighTime = this.unixToHuman(
+     this.currentWeather.todayHighLow.todayTempHighTime = unixToHuman(
        timezone,
        todayDetails.temperatureMaxTime
      ).onlyTime;
-     this.currentWeather.todayHighLow.todayTempLow = this.fahToCel(
+     this.currentWeather.todayHighLow.todayTempLow = fahToCel(
        todayDetails.temperatureMin
      );
-     this.currentWeather.todayHighLow.todayTempLowTime = this.unixToHuman(
+     this.currentWeather.todayHighLow.todayTempLowTime = unixToHuman(
        timezone,
        todayDetails.temperatureMinTime
      ).onlyTime;
@@ -322,16 +320,16 @@ export default {
    getSetHourlyTempInfoToday: function() {
      var unixTime = this.rawWeatherData.currently.time;
      var timezone = this.getTimezone();
-     var todayMonthDate = this.unixToHuman(timezone, unixTime).onlyMonthDate;
+     var todayMonthDate = unixToHuman(timezone, unixTime).onlyMonthDate;
      var hourlyData = this.getHourlyInfoToday();
      for (var i = 0; i < hourlyData.length; i++) {
-       var hourlyTimeAllTypes = this.unixToHuman(timezone, hourlyData[i].time);
+       var hourlyTimeAllTypes = unixToHuman(timezone, hourlyData[i].time);
        var hourlyOnlyTime = hourlyTimeAllTypes.onlyTime;
        var hourlyMonthDate = hourlyTimeAllTypes.onlyMonthDate;
        if (todayMonthDate === hourlyMonthDate) {
          var hourlyObject = { hour: '', temp: '' };
          hourlyObject.hour = hourlyOnlyTime;
-         hourlyObject.temp = this.fahToCel(hourlyData[i].temperature).toString();
+         hourlyObject.temp = fahToCel(hourlyData[i].temperature).toString();
          this.tempVar.tempToday.push(hourlyObject);
          /*
          Since we are using array.push(), we are just adding elements
@@ -373,16 +371,16 @@ export default {
    },
    getSetVisibility: function() {
      var visibilityInMiles = this.rawWeatherData.currently.visibility;
-     this.highlights.visibility = this.mileToKilometer(visibilityInMiles);
+     this.highlights.visibility = mileToKilometer(visibilityInMiles);
    },
    getSetWindStatus: function() {
      var windSpeedInMiles = this.rawWeatherData.currently.windSpeed;
-     this.highlights.windStatus.windSpeed = this.mileToKilometer(
+     this.highlights.windStatus.windSpeed = mileToKilometer(
        windSpeedInMiles
      );
      var absoluteWindDir = this.rawWeatherData.currently.windBearing;
      this.highlights.windStatus.windDirection = absoluteWindDir;
-     this.highlights.windStatus.derivedWindDirection = this.deriveWindDir(
+     this.highlights.windStatus.derivedWindDirection = deriveWindDir(
        absoluteWindDir
      );
    },
