@@ -1,8 +1,5 @@
 <template>
-  <div id="highlights">
-    <p>Weather Highlights:</p>
-    {{ highlights }}
-    <li v-for="x in highlights">{{ x }}</li>
+  <div>   
     <UVIndex :highlights="highlights"></UVIndex>
     <Visibility :highlights="highlights"></Visibility>
     <WindStatus :highlights="highlights"></WindStatus>
