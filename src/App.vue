@@ -15,7 +15,7 @@ let weatherObj = {
           current: "35 C",
         },
         highlights: {
-          uvindex: "3",
+          uvindex: "8",
           windstatus: {
             speed: "30 km/h",
             direction: "N-E",
