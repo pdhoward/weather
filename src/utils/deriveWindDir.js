@@ -1,7 +1,7 @@
 
-export default { 
+
     // To format the wind direction based on the angle
-  deriveWindDir(windDir) {
+ const deriveWindDir = (windDir) => {
     var wind_directions_array = [
       { minVal: 0, maxVal: 30, direction: 'N' },
       { minVal: 31, maxVal: 45, direction: 'NNE' },
@@ -32,4 +32,6 @@ export default {
     return wind_direction;
   }
 
-}
+  export default {
+    deriveWindDir
+  }

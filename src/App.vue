@@ -12,7 +12,7 @@
              @keyup.enter="organizeAllDetails"
            >
            <button id="search-btn" @click="organizeAllDetails">
-             <img src="./assets/Search.svg" width="24" height="24">
+             <img src="./assets/search.svg" width="24" height="24">
            </button>
          </div>
          <div id="info">
@@ -80,9 +80,19 @@
 
 <script>
 import Content from './components/Content.vue'
+/*
+import { convertToTitleCase,
+         deriveWindDir,
+         fahToCel,
+         formatPossibility,
+         milibarToKiloPascal,
+         unixToHuman } from '@/utils'
+         */
+import utilityObj from '@/utils'
 
 export default {
   name: 'app',
+  props: [],
   components: {
     'dashboard-content': Content
   },
@@ -152,6 +162,16 @@ export default {
          this.setHitEnterKeyTrue();
        }
      });
+   },
+    locationEntered: function() {
+     var input = this.$refs.input;
+     if (input.value === '') {
+       this.location = "New York";
+     } else {
+       this.location = this.convertToTitleCase(input.value);
+     }
+     this.makeInputEmpty();
+     this.makeTempVarTodayEmpty();
    },
    getCoordinates: function() {
      this.locationEntered();
@@ -230,13 +250,27 @@ export default {
         this.long;
       this.completeWeatherApi = weatherApi;
     },
+    fetchWeatherData: async function() {
+     await this.fixWeatherApi();
+     var axios = require('axios'); // for handling weather api promise
+     var weatherApiResponse = await axios.get(this.completeWeatherApi);
+     if (weatherApiResponse.status === 200) {
+       this.rawWeatherData = weatherApiResponse.data;
+     } else {
+       alert('Hmm... Seems like our weather experts are busy!');
+     }
+   },
     getTimezone: function() {
      return this.rawWeatherData.timezone;
      },
     getSetCurrentTime: function() {
      var currentTime = this.rawWeatherData.currently.time;
      var timezone = this.getTimezone();
-     this.currentWeather.time = this.unixToHuman(
+     console.log(`>>>>>>>>>>>>>>>>.   DEBUG MODE  line 266<<<<<<<<<<<<<`)
+     console.log(typeof unixToHuman)
+     console.log(utilityObj)
+     
+     this.currentWeather.time = unixToHuman(
        timezone,
        currentTime
      ).fullTime;

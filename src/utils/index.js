@@ -7,7 +7,7 @@ import formatPossibility from './formatPossibility'
 import milibarToKiloPascal from './milibarToKiloPascal'
 import unixToHuman from './unixToHuman'
 
-export default {
+module.exports = {
     convertToTitleCase,
     deriveWindDir,
     fahToCel,

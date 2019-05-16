@@ -1,6 +1,6 @@
 
-export default { 
-    unixToHuman(timezone, timestamp) {
+
+ const unixToHuman = (timezone, timestamp) => {
         /* READ THIS BEFORE JUDGING & DEBUGGING
         For any location beyond the arctic circle and the
         antarctic circle, the weather api does not return certain
@@ -24,6 +24,9 @@ export default {
           fullTime: human,
           onlyTime: justTime,
           onlyMonthDate: monthDate
-        };
-      }
-}
+    };
+  }
+  
+  export default {
+    unixToHuman
+  }
