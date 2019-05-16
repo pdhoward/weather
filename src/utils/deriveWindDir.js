@@ -32,6 +32,4 @@
     return wind_direction;
   }
 
-  export default {
-    deriveWindDir
-  }
+  export default deriveWindDir

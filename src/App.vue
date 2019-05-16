@@ -80,15 +80,15 @@
 
 <script>
 import Content from './components/Content.vue'
-/*
+
 import { convertToTitleCase,
          deriveWindDir,
          fahToCel,
          formatPossibility,
          milibarToKiloPascal,
          unixToHuman } from '@/utils'
-         */
-import utilityObj from '@/utils'
+         
+//import utilityObj from '@/utils'
 
 export default {
   name: 'app',
@@ -267,8 +267,8 @@ export default {
      var currentTime = this.rawWeatherData.currently.time;
      var timezone = this.getTimezone();
      console.log(`>>>>>>>>>>>>>>>>.   DEBUG MODE  line 266<<<<<<<<<<<<<`)
-     console.log(typeof unixToHuman)
-     console.log(utilityObj)
+     console.log(typeof convertToTitleCase)
+     //console.log(utilityObj)
      
      this.currentWeather.time = unixToHuman(
        timezone,

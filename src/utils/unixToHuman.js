@@ -1,5 +1,4 @@
 
-
  const unixToHuman = (timezone, timestamp) => {
         /* READ THIS BEFORE JUDGING & DEBUGGING
         For any location beyond the arctic circle and the
@@ -24,9 +23,7 @@
           fullTime: human,
           onlyTime: justTime,
           onlyMonthDate: monthDate
-    };
+        }
   }
-  
-  export default {
-    unixToHuman
-  }
+
+export default unixToHuman

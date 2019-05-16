@@ -6,6 +6,4 @@ const fahToCel = (tempInFahrenheit) => {
         return tempInCelcius;
     }
 
-export default {
-   fahToCel
-}
+export default fahToCel

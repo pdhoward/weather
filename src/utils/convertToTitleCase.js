@@ -8,7 +8,6 @@ const convertToTitleCase = (str) => {
     return str.join(' ');
   }
 
-  export default {
-    convertToTitleCase
-  }
+  export default convertToTitleCase
+  
 

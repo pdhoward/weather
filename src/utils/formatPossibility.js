@@ -8,6 +8,4 @@ const formatPossibility = (str) => {
     return str.join(' ');
   }
 
-export default {
-  formatPossibility
-}
+export default formatPossibility

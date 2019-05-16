@@ -6,6 +6,4 @@ const milibarToKiloPascal = (pressureInMilibar) => {
     return Math.round(pressureInKPA);
 }
 
-export default {
-    milibarToKiloPascal
-}
+export default milibarToKiloPascal
